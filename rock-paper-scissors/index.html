@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lacquer&family=Roboto&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./style.css">
+
+    <script src="./game.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="description">
+            <h1>Rock, Paper, Scissors Game</h1>
+            <p>Ready to put your rock, paper, and scissor skills to the test? Click that button and let's get this party
+                started! Warning: Side effects may include extreme excitement, nail-biting tension, and an insatiable
+                urge to play again and again. Play at your own risk!</p>
+            <button id="start-btn">Challenge Accepted!</button>
+        </div>
+
+        <div class="round ">You got 5 shots only! </div>
+        <div class="gameplay">
+            <div class="player player-1">
+                <h2>Player 1</h2>
+                <div class="options">
+                    <img src="./assets/images/rock.png" alt="Rock" data-option="rock">
+                    <img src="./assets/images/paper.png" alt="Paper" data-option="paper">
+                    <img src="./assets/images/scissors.png" alt="Scissors" data-option="scissors">
+                </div>
+                <div class="selected-option">
+                    <h3>Your Selection:</h3>
+                    <img src="" alt="" class="option-image disappear">
+                </div>
+            </div>
+            <div class="player computer">
+                <h2>Computer</h2>
+                <div class="options computer-options">
+                    <img src="./assets/images/rock.png" alt="Rock">
+                    <img src="./assets/images/paper.png" alt="Paper">
+                    <img src="./assets/images/scissors.png" alt="Scissors">
+                </div>
+                <div class="selected-option">
+                    <h3>Computer's Selection:</h3>
+                    <img src="" alt="" class="option-image disappear">
+                </div>
+            </div>
+        </div>
+        <div class="result"></div>
+    </div>
+</body>
+
+</html>
