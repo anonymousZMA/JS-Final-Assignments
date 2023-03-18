@@ -8,7 +8,7 @@ The calculator project is a simple calculator that can perform basic arithmetic 
 
 Live link: [Calculator](https://anonymouszma.github.io/JS-Final-Assignments/calculator)
 
-##Rock Paper Scissors
+## Rock Paper Scissors
 The rock paper scissors project is a classic game that is played between two players. In this project, the user plays against the computer. The user can choose either rock, paper, or scissors, and the computer generates a random choice. The winner is determined based on the game's rules, and the winner's score is incremented. The game continues until either the user or the computer reaches a predetermined score.
 
 Live link: [Rock Paper Scissors](https://anonymouszma.github.io/JS-Final-Assignments/rock-paper-scissors/)
