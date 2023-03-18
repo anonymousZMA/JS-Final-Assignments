@@ -2,7 +2,7 @@ const options = ["rock", "paper", "scissors"];
 
 const startBtn = document.getElementById("start-btn");
 const optionsImages = document.querySelectorAll(".options img");
-const playerOptionImage = document.querySelector(".player-1 .option-image");
+const playerOptionImage = document.querySelector(".user-player .option-image");
 const computerOptionImage = document.querySelector(".computer .option-image");
 const displayPlayersOptions = document.querySelectorAll(".disappear");
 const resultText = document.querySelector(".result");
