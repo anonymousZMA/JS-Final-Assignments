@@ -9,26 +9,26 @@ const resultText = document.querySelector(".result");
 const descriptionSection = document.querySelector(".description");
 const gameplay = document.querySelector(".gameplay");
 const roundDiv = document.querySelector(".round");
-let playerSelection, player2Selection;
+let playerSelection, computerSelection;
 let roundsLeft = 5;
 
 function playRound(event) {
   playerSelection = event.target.getAttribute("data-option");
   playerOptionImage.src = `./assets/images/${playerSelection}.png`;
 
-  player2Selection = options[Math.floor(Math.random() * options.length)];
-  computerOptionImage.src = `./assets/images/${player2Selection}.png`;
+  computerSelection = options[Math.floor(Math.random() * options.length)];
+  computerOptionImage.src = `./assets/images/${computerSelection}.png`;
 
   displayPlayersOptions.forEach((option) => {
     option.classList.remove("disappear");
   });
 
-  if (playerSelection === player2Selection) {
+  if (playerSelection === computerSelection) {
     resultText.innerHTML = "<h1>It's a Tie!</h1>";
   } else if (
-    (playerSelection === "rock" && player2Selection === "scissors") ||
-    (playerSelection === "paper" && player2Selection === "rock") ||
-    (playerSelection === "scissors" && player2Selection === "paper")
+    (playerSelection === "rock" && computerSelection === "scissors") ||
+    (playerSelection === "paper" && computerSelection === "rock") ||
+    (playerSelection === "scissors" && computerSelection === "paper")
   ) {
     resultText.innerHTML = "<h1>You Win!</h1>";
   } else {
@@ -51,7 +51,7 @@ function playRound(event) {
 function resetGame() {
   roundsLeft = 5;
   playerSelection = null;
-  player2Selection = null;
+  computerSelection = null;
   playerOptionImage.src = "";
   computerOptionImage.src = "";
   resultText.style.display = "none";
