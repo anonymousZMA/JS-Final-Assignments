@@ -1,0 +1,15 @@
+{
+  "name": "js-final-assignments",
+  "version": "1.0.0",
+  "description": "## Calculator and Rock Paper Scissors This repository contains two simple projects - a calculator and a rock paper scissors game, built using HTML, CSS, and JavaScript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-anonymousZMA:anonymousZMA/JS-Final-Assignments.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
