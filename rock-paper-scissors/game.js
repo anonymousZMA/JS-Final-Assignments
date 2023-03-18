@@ -1,7 +1,5 @@
-// Define the options
 const options = ["rock", "paper", "scissors"];
 
-// Get the elements
 const startBtn = document.getElementById("start-btn");
 const optionsImages = document.querySelectorAll(".options img");
 const playerOptionImage = document.querySelector(".player-1 .option-image");
