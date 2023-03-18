@@ -15,26 +15,28 @@ const input = document.getElementById("input");
 const operations = document.querySelectorAll(".operation");
 const numbers = document.querySelectorAll(".number");
 
-equal.addEventListener("click", (e) => setOperation(e.target.id));
-
-clearBtn.addEventListener("click", resetCalculator);
-backspace.addEventListener("click", deleteNumber);
-
+window.addEventListener("keydown", handleKeyDown);
+equal.addEventListener("mousedown", () => setOperation(equal.id));
+clearBtn.addEventListener("mousedown", resetCalculator);
+backspace.addEventListener("mousedown", deleteNumber);
 operations.forEach((op) =>
-  op.addEventListener("click", () => {
+  op.addEventListener("mousedown", () => {
+    countDot = 0;
+    dot.disabled = false;
     captureInput(op.textContent);
     setOperation(op.textContent);
   })
 );
-
 numbers.forEach((num) =>
-  num.addEventListener("click", () => {
-    countDot++;
-    if (countDot > 1) dot.disabled = true;
+  num.addEventListener("mousedown", () => {
     captureNumbers(num.textContent);
     captureInput(num.textContent);
   })
 );
+dot.addEventListener("mousedown", () => {
+  countDot++;
+  if (countDot > 0) dot.disabled = true;
+});
 
 function captureInput(btn) {
   if (secondOperand === "" && result !== null) {
@@ -45,13 +47,12 @@ function captureInput(btn) {
 }
 
 function captureNumbers(num) {
-  if (selectedOperation) secondOperand += num;
-  else firstOperand += num;
+  selectedOperation ? (secondOperand += num) : (firstOperand += num);
 }
 
 function setOperation(operator) {
   if (firstOperand && secondOperand)
-    numbersInput.push(+firstOperand, +secondOperand);
+    numbersInput = [parseFloat(firstOperand), parseFloat(secondOperand)];
 
   if (numbersInput.length > 1 || operator == "equal") {
     evaluate();
@@ -61,17 +62,19 @@ function setOperation(operator) {
   }
 
   selectedOperation = operator != "equal" ? operator : "";
-  if (result) {
-    captureInput(`${result}  ${selectedOperation}`);
-  }
+  if (result) captureInput(`${result}  ${selectedOperation}`);
 }
 
 function deleteNumber() {
-  let screeText = inputText.replace(/\s/g, "");
-  if (Number.isInteger(+screeText.at(-1))) {
+  let screenText = inputText.replace(/\s/g, "");
+  if (Number.isInteger(+screenText.at(-1))) {
     if (secondOperand) secondOperand = secondOperand.toString().slice(0, -1);
     else firstOperand = firstOperand.toString().slice(0, -1);
-    inputText = screeText.slice(0, -1).split("").join(" ") || "";
+    inputText = screenText.slice(0, -1).split("").join(" ") || "";
+    showInput(inputText);
+  } else if (screenText.at(-1) === ".") {
+    countDot--;
+    inputText = inputText.slice(0, -1);
     showInput(inputText);
   }
 }
@@ -82,12 +85,63 @@ function showInput(inputText) {
 
 function resetCalculator() {
   inputText = "";
+  countDot = 0;
+  dot.disabled = false;
   result = null;
   numbersInput = [];
   showInput("0");
   firstOperand = "";
   secondOperand = "";
   selectedOperation = "";
+}
+
+function handleKeyDown(e) {
+  const key = e.key;
+  switch (key) {
+    case "0":
+    case "1":
+    case "2":
+    case "3":
+    case "4":
+    case "5":
+    case "6":
+    case "7":
+    case "8":
+    case "9":
+      captureNumbers(key);
+      captureInput(key);
+      break;
+    case ".":
+      countDot++;
+      if (countDot > 1) dot.disabled = true;
+      captureInput(key);
+      break;
+    case "+":
+    case "-":
+      captureInput(key);
+      setOperation(key);
+      break;
+    case "*":
+      captureInput("x");
+      setOperation("x");
+      break;
+    case "/":
+      captureInput("÷");
+      setOperation("÷");
+      break;
+    case "Enter":
+      setOperation("equal");
+      evaluate();
+      break;
+    case "Backspace":
+      deleteNumber();
+      break;
+    case "Escape":
+      resetCalculator();
+      break;
+    default:
+      break;
+  }
 }
 
 function showResult(result) {
@@ -102,7 +156,8 @@ function sum(numbers) {
 }
 
 function subtract(numbers) {
-  result = numbers.reduce((a, b) => {
+  let sortedNumbers = numbers.sort((a, b) => b - a);
+  result = sortedNumbers.reduce((a, b) => {
     return a - b;
   });
   showResult(result);
